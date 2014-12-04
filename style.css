@@ -22,9 +22,10 @@ text.axis-worktime {
 
 .d3-tip {
   line-height: 2;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  padding: 9px;
-  background: rgba(0, 0, 0, 0.8);
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   border-radius: 0px;
 }
@@ -36,8 +37,69 @@ text.axis-worktime {
 }
 
 body {
-   background-color:#F0F0F0;font-weight: 300;
-   padding-top: 10px;
+  background-color: #E0E0E0;
+  font-weight: 300;
+  font-family: "Open Sans", sans-serif;
 }
-#chart {font-family: "HelveticaNeue-UltraLight", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;font-size: 20px;display:inline; text-align: center; margin-left:auto; margin-right:auto;height: 100%; width: 700px; padding-left: 150px;
+
+#heatmap {
+  display: block;
+  float: left;
+	width: 700px;
+}
+
+#listener_chart {
+  margin-top: -40px;
+  display: block;
+	float:left;
+	width: 720px;
+}
+
+#logo {
+  max-width:70px; /* you can use % */
+  height: auto;
+
+}
+#title {
+  display: inline;
+  margin-left: 5px;
+  font-weight: 300;
+  vertical-align: middle;
+}
+
+#week_selection {
+  float:right;
+  margin-top: 30px;
+  vertical-align: middle;
+}
+.header {
+  background-color: #FFF;
+  padding: 10px;
+}
+.wrapper {
+  padding: 20px;
+}
+
+.sidebar {
+  display: inline;
+  float: right;
+  width: 300px;
+  padding: 20px;
+  margin:20px;
+}
+#sidebar_image img {
+  display:block;
+  margin: 0 auto;
+  max-width: 230px;
+}
+#sidebar_title {
+  padding-top:10px;
+  padding-bottom:10px;
+  font-weight: 600;
+}
+.chart_label {
+  background-color: #FFF;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 3px;
 }
