@@ -59,7 +59,7 @@ d3.csv("show_data.csv",
       .html(function(d) {
         return d.showName + "<br>" +
                "Listeners: " + d.listeners + "<br>" + 
-               "Page Views: " + d.pageviews;
+               "Pageviews: " + d.pageviews;
       });
     var heatMap = svg.selectAll(".hour")
         .data(data)
@@ -71,12 +71,11 @@ d3.csv("show_data.csv",
         .attr("class", "hour bordered")
         .attr("width", gridSize)
         .attr("height", gridSize)
+        .attr("hour", function(d) { return d.hour; })
+        .attr("day", function(d) { return d.day; })
         .style("fill", colors[0])
         .on("click", function(d) {  
-          //load sidebar with showname, description, listen link, image
           refreshSidebar(d.showName, d.description, d.archive_slug, d.slug);
-          //var text = d.description;
-           // $("#sidebar").text(text);
         })
         .on('mouseover',tip.show)
         .on('mouseout', tip.hide)
@@ -106,6 +105,30 @@ d3.csv("show_data.csv",
       .text(function(d) { return "≥ " + Math.round(d); })
       .attr("x", function(d, i) { return legendElementWidth * i + width/4+7; })
       .attr("y", height + 100 + gridSize);
+
+    // Listener chart
+    var svg = dimple.newSvg("#listener_chart", 720, 240);
+    var myChart = new dimple.chart(svg, data);
+
+    myChart.defaultColors = [
+      new dimple.color("#60D7E6")
+    ]; 
+    myChart.setBounds(50, 30, 640, 160);
+    var x = myChart.addCategoryAxis("x", ["day", "hour"]);
+    x.addGroupOrderRule([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]);
+    x.fontSize = "12px";
+    x.fontFamily = "Open Sans";
+    var y = myChart.addMeasureAxis("y", "listeners");
+    y.fontSize = "12px";
+    y.fontFamily = "Open Sans";
+    var s = myChart.addSeries(null, dimple.plot.line);
+    s.getTooltipText = function(e){
+      console.log(e);
+      $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").delay(200).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      return [dayOfWeekAsString(e["x"]), "Hour: " + e["xField"][1], "Listeners:" + e["yValueList"][0]];
+    }
+    myChart.draw();
+
 }); 
 
 function refreshSidebar(showname, description, archive_slug, slug) {
@@ -116,25 +139,8 @@ function refreshSidebar(showname, description, archive_slug, slug) {
   $("#sidebar_image").html("<img src='https://www.wrek.org/wp-content/themes/wrek/images/ss_icons/" +slug + ".png'>");
   $("#sidebar_title").text(showname);
   $("#sidebar_description").text(description);
-
 }
 
-var svg = dimple.newSvg("#listener_chart", 720, 240);
-  d3.csv("show_data.csv", function (data) {
-    //data = dimple.filterData(data, "listeners")
-    var myChart = new dimple.chart(svg, data);
-    myChart.defaultColors = [
-      new dimple.color("#60D7E6")
-    ]; 
-    myChart.setBounds(50, 30, 640, 160);
-    var x = myChart.addCategoryAxis("x", ["day", "hour"]);
-    x.addOrderRule("Date");
-    x.fontSize = "12px";
-    x.fontFamily = "Open Sans";
-    var y = myChart.addMeasureAxis("y", "listeners");
-    y.fontSize = "12px";
-    y.fontFamily = "Open Sans";
-    var s = myChart.addSeries(null, dimple.plot.line);
-    myChart.draw();
-  });
-
+function dayOfWeekAsString(dayIndex) {
+  return ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][dayIndex];
+}

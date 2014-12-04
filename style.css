@@ -69,9 +69,11 @@ body {
 
 #week_selection {
   float:right;
-  margin-top: 30px;
+  margin-top: 16px;
   vertical-align: middle;
+  display: block;
 }
+
 .header {
   background-color: #FFF;
   padding: 10px;

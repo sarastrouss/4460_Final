@@ -21,7 +21,12 @@
     <div class="header">
       <img id="logo" src="img/logo.png">
       <h1 id="title">Programming Dashboard</h1>
-      <div id="week_selection">Week: 2014-11-10 through 2014-11-16</div>
+      <div id="week_selection">
+        <select name="week_select" class="form-control">
+          <option>2014-11-10 to 2014-11-16</option>
+          <option>2014-11-17 to 2014-11-23</option>
+        </select>
+      </div>
     </div>
     <div class="sidebar">
       <div id="sidebar_image"></div>
@@ -31,7 +36,7 @@
     </div>   
     <div class="wrapper">
       <div id="heatmap"><div class="chart_label">Heatmap: Pageviews & Online Listeners</div></div>
-      <div id="listener_chart"><div class="chart_label">Hourly Listeners</div></div>
+      <div id="listener_chart"><div id="hourly_label" class="chart_label">Hourly Listeners</div></div>
       <script src="viz.js" type="text/javascript"></script>  
     </div>
 
