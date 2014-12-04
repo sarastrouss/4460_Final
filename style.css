@@ -79,6 +79,7 @@ body {
   padding: 10px;
 }
 .wrapper {
+  max-width: 800px;
   padding: 20px;
 }
 
