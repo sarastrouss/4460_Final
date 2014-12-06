@@ -60,7 +60,7 @@ d3.csv("show_data.csv",
       .html(function(d) {
         return d.showName + "<br>" +
                "Listeners: " + d.listeners + "<br>" + 
-               "Pageviews: " + d.pageviews + 
+               "Pageviews: " + d.pageviews + "<br>"
                "Callers: " + d.callerlog;
       });
     var heatMap = svg.selectAll(".hour")
