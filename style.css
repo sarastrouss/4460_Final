@@ -46,7 +46,6 @@ body {
   display: block;
   float: left;
 	width: 700px;
-  font-style: bold;
 }
 
 #listener_chart {
@@ -102,7 +101,7 @@ body {
   font-weight: 600;
 }
 .chart_label {
-  background-color: #F0F0F0;
+  background-color: #FFF;
   display: inline-block;
   margin: 0 auto;
   padding: 3px;
