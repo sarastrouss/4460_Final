@@ -1,3 +1,4 @@
+/* Custom CSS to style page, heatmap, and line chart. */ 
 rect.bordered {
   stroke: #E6E6E6;
   stroke-width:2px; 

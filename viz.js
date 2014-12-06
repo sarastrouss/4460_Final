@@ -1,3 +1,4 @@
+// Loads Heatmap and Listener Chart
 d3.csv("show_data.csv",
   function(d) {
     return {
@@ -14,6 +15,7 @@ d3.csv("show_data.csv",
     };
   },
   function(error, data) {
+    // load size, color, and label info
     var margin = { top: 30, right: 0, bottom: 180, left: 30 },
           width = 700 - margin.left - margin.right,
           height = 300 - margin.top - margin.bottom,
@@ -25,6 +27,7 @@ d3.csv("show_data.csv",
           times = ["12a", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12p", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
 
     // Heatmap
+    // Uses d3-tip for tooltips and jQuery for dynamic access to other visualizations
     var colorScale = d3.scale.quantile()
         .domain([0, buckets - 1, d3.max(data, function (d) { return d.total; })])
         .range(colors);
@@ -63,6 +66,7 @@ d3.csv("show_data.csv",
                "Pageviews: " + d.pageviews + "<br>" +
                "Callers: " + d.callerlog;
       });
+    // render heatmap
     var heatMap = svg.selectAll(".hour")
         .data(data)
         .enter().append("rect")
@@ -83,13 +87,14 @@ d3.csv("show_data.csv",
         .on('mouseout', tip.hide)
         svg.append("g").call(tip);
 
+    // animation on heatmap load
     heatMap.transition().duration(1300)
         .style("fill", function(d) { return colorScale(d.total); });
 
     heatMap.append("name").text(function(d) { return d.day; });
     heatMap.append("description").text(function(d) { return d.hour; });
 
-        
+    // create legend colorbars with labels
     var legend = svg.selectAll(".legend")
         .data([0].concat(colorScale.quantiles()), function(d) { return d; })
         .enter().append("g")
@@ -109,9 +114,9 @@ d3.csv("show_data.csv",
       .attr("y", height + 100 + gridSize);
 
     // Listener chart
+    // Uses dimple library with custom fonts, data source, ordering, animations
     var svg = dimple.newSvg("#listener_chart", 720, 240);
     var myChart = new dimple.chart(svg, data);
-
     myChart.defaultColors = [
       new dimple.color("#60D7E6")
     ]; 
@@ -124,8 +129,8 @@ d3.csv("show_data.csv",
     y.fontSize = "12px";
     y.fontFamily = "Open Sans";
     var s = myChart.addSeries(null, dimple.plot.line);
+    // Customized tooltips with interactivity with heatmap
     s.getTooltipText = function(e){
-      console.log(e);
       $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").delay(200).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
       return [dayOfWeekAsString(e["x"]), "Hour: " + e["xField"][1], "Listeners:" + e["yValueList"][0]];
     }
@@ -133,6 +138,7 @@ d3.csv("show_data.csv",
 
 }); 
 
+// Custom function to populate sidebar using jQuery
 function refreshSidebar(showname, description, archive_slug, slug) {
   $('.sidebar ').css({'background-color': '#FFF'}); 
   $("#sidebar_title").text(showname);
@@ -143,6 +149,7 @@ function refreshSidebar(showname, description, archive_slug, slug) {
   $("#sidebar_description").text(description);
 }
 
+// Custom function to convert integer days to Strings
 function dayOfWeekAsString(dayIndex) {
   return ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][dayIndex];
 }
