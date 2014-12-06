@@ -21,7 +21,7 @@ text.axis-worktime {
 }
 
 .d3-tip {
-  line-height: 2;
+  line-height: 3;
   font-family: "Open Sans", sans-serif;
   font-size: 12px;
   padding: 5px;
