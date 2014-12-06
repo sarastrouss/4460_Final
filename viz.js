@@ -5,7 +5,8 @@ d3.csv("show_data.csv",
       hour: +d.hour,
       listeners: +d.listeners,
       pageviews: +d.pageviews,
-      total: +d.listeners + +d.pageviews,
+      callerlog: +d.callerlog,
+      total: +d.listeners + +d.pageviews + +d.callerlog,
       description: d.description,
       showName: d.showName,
       slug: d.slug,
@@ -59,7 +60,8 @@ d3.csv("show_data.csv",
       .html(function(d) {
         return d.showName + "<br>" +
                "Listeners: " + d.listeners + "<br>" + 
-               "Pageviews: " + d.pageviews;
+               "Pageviews: " + d.pageviews + 
+               "Callers: " + d.callerlog;
       });
     var heatMap = svg.selectAll(".hour")
         .data(data)
