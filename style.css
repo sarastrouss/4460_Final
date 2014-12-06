@@ -37,7 +37,7 @@ text.axis-worktime {
 }
 
 body {
-  background-color: #E0E0E0;
+  background-color: #F0F0F0;
   font-weight: 300;
   font-family: "Open Sans", sans-serif;
 }
@@ -101,7 +101,7 @@ body {
   font-weight: 600;
 }
 .chart_label {
-  background-color: #FFF;
+  background-color: #F0F0F0;
   display: inline-block;
   margin: 0 auto;
   padding: 3px;
