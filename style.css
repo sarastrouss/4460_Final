@@ -46,6 +46,7 @@ body {
   display: block;
   float: left;
 	width: 700px;
+  font-style: bold;
 }
 
 #listener_chart {
