@@ -47,13 +47,13 @@ body {
   display: block;
   float: left;
 	width: 700px;
+  margin-bottom: -40px;
 }
 
 #listener_chart {
-  margin-top: -40px;
   display: block;
 	float:left;
-	width: 720px;
+	width: 700px;
 }
 
 #logo {
@@ -85,6 +85,7 @@ body {
 }
 
 .sidebar {
+  background-color: #FFF;
   display: inline;
   float: right;
   width: 300px;
@@ -106,4 +107,28 @@ body {
   display: inline-block;
   margin: 0 auto;
   padding: 3px;
+}
+
+#hourly_label {
+  background-color: #FFF;
+  display: inline-block;
+  padding: 3px;
+  margin-bottom: -10px;
+}
+
+#buttons {
+  display: inline;
+  float: right;
+  margin-top: 16px;
+  vertical-align: middle;
+
+}
+#header_wrapper {
+  width: 1070px;
+  margin: 0 auto;
+}
+
+#container {
+  width: 1070px;
+  margin: 0 auto;
 }
