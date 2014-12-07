@@ -207,13 +207,13 @@ function displayHeatmap(filter) {
     x.fontSize = "12px";
     x.fontFamily = "Open Sans";
     var y = myChart.addMeasureAxis("y", ["listeners"]);
-    
+
     y.fontSize = "12px";
     y.fontFamily = "Open Sans";
     var s = myChart.addSeries(null, dimple.plot.line);
     // Customized tooltips with interactivity with heatmap
     s.getTooltipText = function(e){
-      $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").delay(200).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      $("rect[hour=" + e["xField"][1] + '][day='+ e["x"] + "]").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
       return [dayOfWeekAsString(e["x"]), "Hour: " + e["xField"][1], "Listeners:" + e["yValueList"][0]];
     }
     myChart.draw();
